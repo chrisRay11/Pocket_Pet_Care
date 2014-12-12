@@ -6,6 +6,7 @@ import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,8 +32,8 @@ public class PetMap1 extends FragmentActivity implements GoogleMap.OnInfoWindowC
     private double gLongitude;
     private double gLatitude;
     private String url1 = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=";
-    private int radiusValue = 1600;
-    private String itemType = "pet_store";
+    private int radiusValue = 5000;
+    private String itemType = "pet_store&pet";
     private String kei = "AIzaSyBEUM5KOBgsPvBQVdA5Ltn8p7DPAcK425g";
 
 
@@ -46,26 +47,10 @@ public class PetMap1 extends FragmentActivity implements GoogleMap.OnInfoWindowC
 
     private Map<String, String> markers = new HashMap();
 
-    /*
-   *    https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=
-   *         40.717859
-            ,
-    *        -73.9577937
-            &radius=
 
-            &types=
+    private String markPlace;
+    private String markAddress;
 
-    &key=
-
-
-
-    url1
-    long
-            lat
-    distance
-            type
-    key
-    */
     // Sets the map type to be "hybrid"
     //map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
@@ -81,12 +66,12 @@ public class PetMap1 extends FragmentActivity implements GoogleMap.OnInfoWindowC
         //mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 
         //Get the current location
-        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        //gLongitude = location.getLongitude();
-        //gLatitude = location.getLatitude();
-       // gLongitude = ;
-        //gLatitude = ;
+       LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+       Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+       gLongitude = location.getLongitude();
+       gLatitude = location.getLatitude();
+       //gLongitude = -83.049838;
+       //gLatitude = 42.335922;
 
 
 
@@ -102,13 +87,13 @@ public class PetMap1 extends FragmentActivity implements GoogleMap.OnInfoWindowC
 
 
 
-        //urlSetup = url1 + gLongitude + "," + gLatitude + "&radius=" + radiusValue + "&types=" + itemType + "&key=" + kei;
-        urlSetup = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.265619,-83.15610199999998&radius=1600&types=pet_store&key=AIzaSyBEUM5KOBgsPvBQVdA5Ltn8p7DPAcK425g";
+        urlSetup = url1 + gLatitude + "," + gLongitude + "&radius=" + radiusValue + "&types=" + itemType + "&key=" + kei;
+        //urlSetup = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.335922,-83.049838&radius=5000&types=pet_store&pet&key=AIzaSyBEUM5KOBgsPvBQVdA5Ltn8p7DPAcK425g";
 
 
-        if (myMap != null){
+       // if (myMap != null){
 
-        }
+       // }
 
 
         //sets the json
@@ -190,8 +175,10 @@ public class PetMap1 extends FragmentActivity implements GoogleMap.OnInfoWindowC
             // Try to obtain the map from the SupportMapFragment.
             myMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
+
+        }else{
             // Check if we were successful in obtaining the map.
-            if (myMap != null) {
+           // if (myMap != null) {
                 setUpMap();
                 //sets the finalUrl
                 String finalUrl = urlSetup;
@@ -201,11 +188,58 @@ public class PetMap1 extends FragmentActivity implements GoogleMap.OnInfoWindowC
                 while(obj.parsingComplete){
 
                 };
+
+
+
+
+
+
+
+
+
+
                 for(Place place : obj.getplacesArray()){
-                    Marker mark = myMap.addMarker(new MarkerOptions().position(new LatLng(place.getPlaceLat(), place.getPlaceLng())).title(place.getPlaceName()));
-                    markers.put(mark.getId(), place.getPlaceId());
+                   // Marker mark = myMap.addMarker(new MarkerOptions().position(new LatLng(place.getPlaceLat(), place.getPlaceLng())).title(place.getPlaceName() + "\n" + place.getplaceAddress()));
+
+                    Marker mark = myMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(place.getPlaceLat(), place.getPlaceLng()))
+                            .title(place.getPlaceName())
+                            .snippet(place.getplaceAddress())
+                    );
+
+/*
+
+
+
+
+                    myMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+                        @Override
+                        public View getInfoWindow(Marker arg0) {
+                            return null;
+                        }
+
+                        @Override
+                        public View getInfoContents(Marker marker) {
+
+                            View v = getLayoutInflater().inflate(R.layout.markerxml, null);
+
+                            TextView info= (TextView) v.findViewById(R.id.infoPlane);
+
+                            info.setText(markPlace + "\n" + markAddress);
+
+                            return v;
+                        }
+                    });
+
+*/
+
+                    // markers.put(mark.getId(), place.getPlaceId());
+                   // markers.put(mark.getId(), place.getPlaceName());
+
+
                 }
-            }
+           // }
         }
     }
 
@@ -217,11 +251,15 @@ public class PetMap1 extends FragmentActivity implements GoogleMap.OnInfoWindowC
      */
     private void setUpMap() {
         //myMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
-        myMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Current Location"));
+        myMap.addMarker(new MarkerOptions()
+                .position(new LatLng(gLatitude, gLongitude))
+                .title("Current Location")
+
+        );
 
         //myMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         latLng = new LatLng(gLatitude, gLongitude);
-        myMap.moveCamera(CameraUpdateFactory.zoomTo(10));
+        myMap.moveCamera(CameraUpdateFactory.zoomTo(12));
         myMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         myMap.setMyLocationEnabled(true);
         myMap.setOnInfoWindowClickListener(this);
@@ -230,6 +268,19 @@ public class PetMap1 extends FragmentActivity implements GoogleMap.OnInfoWindowC
     @Override
     public void onInfoWindowClick(Marker marker) {
     //do crap on button click
+
+        markPlace = marker.getTitle();
+        markAddress = "hi";
+
+        View v = getLayoutInflater().inflate(R.layout.markerxml, null);
+
+        TextView info= (TextView) v.findViewById(R.id.infoPlane);
+
+        info.setText(markPlace + "\n" + markAddress);
+
+        //return marker;
+
+
     }
 
     /*

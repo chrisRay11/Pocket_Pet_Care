@@ -5,19 +5,19 @@ package com.pocketpetcare.educ8.pocketpetcare;
  */
 public class Place {
 
-    public Place(String placeId, String placeName, double placeLat, double placeLng){
+    public Place(String placeId, String placeName, double placeLat, double placeLng, String placeAddress){
         this.placeId = placeId;
         this.placeName = placeName;
         this.placeLat = placeLat;
         this.placeLng = placeLng;
-
+        this.placeAddress = placeAddress;
     }
 
     private String placeId = "";
     private String placeName = "";
     private double placeLat = 0;
     private double placeLng = 0;
-
+    private String placeAddress = "";
 
     public String getPlaceId() {
         return placeId;
@@ -33,5 +33,10 @@ public class Place {
 
     public double getPlaceLng() {
         return placeLng;
+    }
+
+    public String getplaceAddress() {
+
+        return placeAddress;
     }
 }

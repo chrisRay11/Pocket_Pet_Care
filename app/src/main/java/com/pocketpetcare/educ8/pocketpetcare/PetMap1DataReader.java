@@ -20,10 +20,10 @@ import android.annotation.SuppressLint;
 import android.widget.Toast;
 
 public class PetMap1DataReader {
-    private String country = "county";
-    private String temperature = "temperature";
-    private String humidity = "humidity";
-    private String pressure = "pressure";
+   // private String country = "county";
+   // private String temperature = "temperature";
+   // private String humidity = "humidity";
+   // private String pressure = "pressure";
     private String urlString = null;
 
     private String jName;
@@ -58,26 +58,15 @@ public class PetMap1DataReader {
 
             JSONArray results  = reader.getJSONArray("results");
 
-
-
-
             for(int i = 0; i < results.length(); i++){
                 JSONObject result = results.getJSONObject(i);
                 JSONObject geometry = result.getJSONObject("geometry");
+                //JSONObject address = result.getJSONObject("vicinity");
                 JSONObject location = geometry.getJSONObject("location");
-                Place p = new Place(result.getString("place_id"), result.getString("name"), location.getDouble("lat"), location.getDouble("lng"));
+                Place p = new Place(result.getString("place_id"), result.getString("name"), location.getDouble("lat"), location.getDouble("lng"), result.getString("vicinity"));
                 placesArray.add(p);
             }
-
-
-
-
            // jName = results.getString("name");
-
-
-
-
-
 
             /*
             //////////////
@@ -101,8 +90,6 @@ public class PetMap1DataReader {
 
             */
             parsingComplete = false;
-
-
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
