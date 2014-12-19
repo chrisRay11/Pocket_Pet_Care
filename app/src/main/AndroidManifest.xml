@@ -64,10 +64,7 @@
             android:name=".PetMap1"
             android:label="@string/title_activity_pet_map1" >
         </activity>
-        <activity
-            android:name=".PetBreed1"
-            android:label="@string/petbreed" >
-        </activity>
+
         <activity
             android:name=".PetFinder"
             android:label="@string/title_activity_pet_finder" >

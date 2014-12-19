@@ -4,12 +4,18 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
 
+
+    lintOptions {
+        abortOnError false
+    }
+
+
     defaultConfig {
         applicationId "com.pocketpetcare.educ8.pocketpetcare"
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
     }
     buildTypes {
         release {
