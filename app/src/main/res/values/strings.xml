@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PocketPetCare</string>
-    <string name="title_petcareinst_detail">petCareInst Detail</string>
+    <string name="app_name"><b>Pocket Pet Care</b></string>
+    <string name="title_petcareinst_detail"><b>Pocket Pet Care</b></string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_pet_map1">PetMap1</string>
-    <string name="title_activity_pet_scheduler">PetScheduler</string>
+    <string name="title_activity_pet_map1"><b>Pocket Pet Care</b></string>
+    <string name="title_activity_pet_scheduler"><b>Pocket Pet Care</b></string>
     <string name="hello_world">Hello world!</string>
     <string name="location">Location</string>
     <string name="country">Country</string>
@@ -14,5 +14,8 @@
     <string name="pressure">Pressure</string>
     <string name="weather">Weath</string>
     <string name="weatherTest">weather test</string>
+    <string name="petbreed">Pet Breed</string>
+    <string name="title_activity_pet_finder"><b>Pocket Pet Care</b></string>
+    <string name="status">Status: <br>Available</br></string>
 
 </resources>

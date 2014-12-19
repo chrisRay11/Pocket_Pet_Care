@@ -133,4 +133,7 @@ public class PetMap1DataReader {
     public ArrayList<Place> getplacesArray() {
         return placesArray;
     }
+
+
+
 }

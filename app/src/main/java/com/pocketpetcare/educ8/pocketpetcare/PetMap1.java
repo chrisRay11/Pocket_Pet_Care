@@ -1,6 +1,7 @@
 package com.pocketpetcare.educ8.pocketpetcare;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
@@ -33,7 +34,7 @@ public class PetMap1 extends FragmentActivity implements GoogleMap.OnInfoWindowC
     private double gLatitude;
     private String url1 = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=";
     private int radiusValue = 5000;
-    private String itemType = "pet_store&pet";
+    private String itemType = "veterinary_care|pet_store&pet";
     private String kei = "AIzaSyBEUM5KOBgsPvBQVdA5Ltn8p7DPAcK425g";
 
 
@@ -62,6 +63,10 @@ public class PetMap1 extends FragmentActivity implements GoogleMap.OnInfoWindowC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_map1);
+
+        Drawable d=getResources().getDrawable(R.drawable.pocketpatternlng);
+        getActionBar().setBackgroundDrawable(d);
+
         setUpMapIfNeeded();
         //mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 

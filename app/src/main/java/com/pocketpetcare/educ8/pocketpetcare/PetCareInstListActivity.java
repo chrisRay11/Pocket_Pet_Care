@@ -1,6 +1,7 @@
 package com.pocketpetcare.educ8.pocketpetcare;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -34,6 +35,9 @@ public class PetCareInstListActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_petcareinst_list);
+
+        Drawable d=getResources().getDrawable(R.drawable.pocketpatternlng);
+        getActionBar().setBackgroundDrawable(d);
 
         if (findViewById(R.id.petcareinst_detail_container) != null) {
             // The detail container view will be present only in the

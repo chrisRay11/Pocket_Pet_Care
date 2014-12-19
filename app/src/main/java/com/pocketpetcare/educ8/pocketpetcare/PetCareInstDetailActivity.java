@@ -22,7 +22,7 @@ public class PetCareInstDetailActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_petcareinst_detail);
+        setContentView(R.layout.activity_petcareinst_list);
 
         // Show the Up button in the action bar.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

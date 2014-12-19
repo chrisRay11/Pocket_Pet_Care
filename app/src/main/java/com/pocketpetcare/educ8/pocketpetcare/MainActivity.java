@@ -1,7 +1,11 @@
 package com.pocketpetcare.educ8.pocketpetcare;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,21 +16,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.pocketpetcare.educ8.pocketpetcare.petsToCareForInst.PetScheduler;
+//import com.pocketpetcare.educ8.pocketpetcare.petsToCareForInst.PetScheduler;
 
 import java.util.List;
 
 
 public class MainActivity extends Activity implements AdapterView.OnItemClickListener {
 
-    private String[] menuItems = { "Pet Care", "Select a Pet","Locate a Shop", "Pet Scheduler", "XX2" };
+    private String[] menuItems = { "Pet Care","Locate a Shop", "Adopt-A-Pet"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menuItems);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.listviewsetup, menuItems);
 
         ListView mainPetList = (ListView) findViewById(R.id.petMainMenuList);
 
@@ -35,9 +39,18 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         mainPetList.setOnItemClickListener(this);
 
 
+        ///////////////////////////////
+       // final ActionBar actionBar = getActionBar();
+
+        Drawable d=getResources().getDrawable(R.drawable.pocketpatternlng);
+        getActionBar().setBackgroundDrawable(d);
 
 
-
+/*
+        ActionBar bar = getActionBar();
+        //bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
+        bar.setBackgroundDrawable(R.drawable.ic_launcher);
+*/
     }
 
 
@@ -71,39 +84,34 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 
         switch (position) {
             case 0:
-                Toast.makeText(this, "search Intent00 to change the intent path for Pet Care: " , Toast.LENGTH_SHORT).show();
 
                 Intent mainIntent00 = new Intent(this, PetCareInstListActivity.class);
                 startActivity(mainIntent00);
 
                 break;
             case 1:
-                Toast.makeText(this, "search Intent01 to change the intent path for Select a Pet: " , Toast.LENGTH_SHORT).show();
-/*
-                Intent mainIntent01 = new Intent(this, INSERTINTENDEDCLASSHERE.class);
+
+                Intent mainIntent01 = new Intent(this, PetMap1.class);
                 startActivity(mainIntent01);
-*/
+
                 break;
             case 2:
-                Toast.makeText(this, "search Intent02 to change the intent path for Locate a Shop: " , Toast.LENGTH_SHORT).show();
 
-                Intent mainIntent02 = new Intent(this, PetMap1.class);
+                Intent mainIntent02 = new Intent(this, PetFinder.class);
                 startActivity(mainIntent02);
 
                 break;
             case 3:
-                Toast.makeText(this, "search Intent03 to change the intent path for Pet Scheduler: " , Toast.LENGTH_SHORT).show();
-
-                Intent mainIntent03 = new Intent(this, PetScheduler.class);
+/*
+                Intent mainIntent03 = new Intent(this, PetFinder.class);
                 startActivity(mainIntent03);
-
+*/
                 break;
             case 4:
-                Toast.makeText(this, "search Intent04 to change the intent path for XX2: " , Toast.LENGTH_SHORT).show();
-
+/*
                 Intent mainIntent04 = new Intent(this, WeatherTest.class);
                 startActivity(mainIntent04);
-
+*/
                 break;
         }
 
